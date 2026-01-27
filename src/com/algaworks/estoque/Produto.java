@@ -1,5 +1,7 @@
 package com.algaworks.estoque;
 
+import java.util.Objects;
+
 public class Produto {
 
     private String nome;
@@ -7,6 +9,7 @@ public class Produto {
     private boolean ativo;
 
     public Produto(String nome) {
+
         this.nome = nome;
     }
 
@@ -27,6 +30,7 @@ public class Produto {
     }
 
     public void setNome(String nome) {
+        Objects.requireNonNull(nome,"Nome deve ser informado");
         this.nome = nome;
     }
 
@@ -53,6 +57,10 @@ public class Produto {
         }
         if (isInativo()){
             throw new IllegalStateException("Retirada no estoque não pode ser realizada em produto inativo");
+        }
+
+        if (this.quantidadeEstoque - quantidade < 0){
+            throw new IllegalArgumentException("Quantidade invalida porque estoque ficaria negativo");
         }
 
         this.quantidadeEstoque -= quantidade ;

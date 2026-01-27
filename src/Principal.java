@@ -8,7 +8,7 @@ public class Principal {
         produto.adicionarEstoque(10);
         produto.ativar();
 
-        produto.retirarEstoque(5);
+        produto.retirarEstoque(15);
 
         System.out.printf("Estoque: %d%n", produto.getQuantidadeEstoque());
     }
