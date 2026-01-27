@@ -42,6 +42,11 @@ public class Produto {
     }
 
     public void retirarEstoque(int quantidade){
+        if(quantidade < 0){
+            throw new IllegalArgumentException(
+                    "Quantidade não pode ser negativa para retidada de estoque");
+        }
+
         this.quantidadeEstoque -= quantidade ;
     }
 
