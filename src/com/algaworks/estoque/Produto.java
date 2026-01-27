@@ -14,6 +14,10 @@ public class Produto {
         return ativo;
     }
 
+    public boolean isInativo() {
+        return !isAtivo();
+    }
+
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
@@ -37,6 +41,7 @@ public class Produto {
     public void ativar(){
         this.ativo = true;
     }
+
     public void desativar(){
         this.ativo = false;
     }
@@ -45,6 +50,9 @@ public class Produto {
         if(quantidade < 0){
             throw new IllegalArgumentException(
                     "Quantidade não pode ser negativa para retidada de estoque");
+        }
+        if (isInativo()){
+            throw new IllegalStateException("Retirada no estoque não pode ser realizada em produto inativo");
         }
 
         this.quantidadeEstoque -= quantidade ;
