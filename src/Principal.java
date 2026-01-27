@@ -6,6 +6,7 @@ public class Principal {
 
         Produto produto = new Produto("Apple Watch");
         produto.adicionarEstoque(10);
+        produto.ativar();
 
         produto.retirarEstoque(5);
 
