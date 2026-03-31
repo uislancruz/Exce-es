@@ -15,20 +15,33 @@ public class Principal {
 
         private static void comprar(Produto produto) {
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Quantidade: ");
-            int quantidade = scanner.nextInt();
 
-            efetuarBaixaEstoque(produto, quantidade);
-            System.out.println("Compra realizada");
+            do {
+                try {
+                    System.out.print("Quantidade: ");
+                    int quantidade = scanner.nextInt();
+
+                    efetuarBaixaEstoque(produto, quantidade);
+                    System.out.println("Compra realizada");
+
+                    break;
+
+                }catch (IllegalArgumentException e) {
+                    //e.printStackTrace();
+                    System.out.println("Erro ao comprar" + e.getMessage());
+                }
+
+            }while (true);
         }
 
         private static void efetuarBaixaEstoque(Produto produto, int quantidade) {
-            try {
+//            try {
                 produto.retirarEstoque(quantidade);
                 System.out.printf("%d unidades retiradas do estoque. Estoque atual: %d%n",
                         quantidade, produto.getQuantidadeEstoque());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+//            } catch (IllegalArgumentException e) {
+//                System.out.println("Erro ao efetuar compra. " + e.getMessage());
+//                throw e;
+//            }
         }
 }
