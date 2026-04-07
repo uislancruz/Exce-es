@@ -1,4 +1,4 @@
-import com.algaworks.estoque.Produto;
+package com.algaworks.estoque;
 
 import java.util.Scanner;
 
