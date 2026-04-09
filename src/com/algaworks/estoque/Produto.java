@@ -56,11 +56,12 @@ public class Produto {
                     "Quantidade não pode ser negativa para retidada de estoque");
         }
         if (isInativo()){
-            throw new IllegalStateException("Retirada no estoque não pode ser realizada em produto inativo");
+            throw new ProdutoInativoException("Retirada no estoque não pode ser realizada em produto inativo");
+
         }
 
         if (this.quantidadeEstoque - quantidade < 0){
-            throw new IllegalArgumentException("Quantidade invalida porque estoque ficaria negativo");
+            throw new ProdutoSemEstoqueException("Estoque insuficiente", this.quantidadeEstoque, quantidade);
         }
 
         this.quantidadeEstoque -= quantidade ;

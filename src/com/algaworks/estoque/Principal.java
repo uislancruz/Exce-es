@@ -7,7 +7,7 @@ public class Principal {
     static void main(String[] args) {
 
             Produto produto = new Produto("Apple Watch");
-            //produto.ativar();
+            produto.ativar();
             produto.adicionarEstoque(20);
 
             comprar(produto);
@@ -27,10 +27,12 @@ public class Principal {
                     break;
 
                 }catch (IllegalArgumentException e) {
-                    //e.printStackTrace();
-                    System.out.println("Erro ao comprar" + e.getMessage());
-                }catch (IllegalStateException ise) {
-                    System.out.println("Erro ao comprar" + ise.getMessage());
+                    System.out.println("Erro ao comprar: " + e.getMessage());
+                }catch (ProdutoSemEstoqueException e) {
+                    System.out.printf("Erro ao comprar: %s. Estoque disponivel: %d. Estoque solicitado: %d%n",
+                            e.getMessage(), e.getEstoqueDisponivel(), e.getEstoqueNecessario());
+                }catch (ProdutoInativoException e) {
+                    System.out.println("Erro ao comprar: " + e.getMessage());
                     System.out.print("Deseja ativar o produto? ");
 
                     if(scanner.nextBoolean()) {
